@@ -5,6 +5,8 @@ import AllProducts from "../AllProducts/AllProducts";
 import Register from "../Register/Register";
 import MyProducts from "../MyProducts/MyProducts";
 import MyBids from "../MyBids/MyBids";
+import PrivateRoute from "./PrivateRoute";
+import ProductDetails from "../ProductDetails/ProductDetails";
 
 const router = createBrowserRouter([
     {
@@ -25,12 +27,17 @@ const router = createBrowserRouter([
             },
             {
                 path: '/myProducts',
-                element: <MyProducts></MyProducts>
+                element: <PrivateRoute><MyProducts></MyProducts></PrivateRoute>
             },
             {
                 path: '/myBids',
-                element: <MyBids></MyBids>
+                element: <PrivateRoute><MyBids></MyBids></PrivateRoute>
             },
+            {
+                path: 'productDetails/:_id',
+                loader: ({ params }) => fetch(`http://localhost:5000/products/${params._id}`),
+                Component: ProductDetails
+            }
         ]
     },
 ])
