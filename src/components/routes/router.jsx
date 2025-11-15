@@ -7,6 +7,7 @@ import MyProducts from "../MyProducts/MyProducts";
 import MyBids from "../MyBids/MyBids";
 import PrivateRoute from "./PrivateRoute";
 import ProductDetails from "../ProductDetails/ProductDetails";
+import ErrorPage from "../ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
     {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
                 path: 'productDetails/:id',
                 loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`),
                 Component: ProductDetails
+            },
+            {
+                path: '/*',
+                Component: ErrorPage
             }
         ]
     },
